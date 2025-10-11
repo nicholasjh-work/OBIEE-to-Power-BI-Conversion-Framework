@@ -4,39 +4,38 @@
 
 **Project timeline:** 2017 – 2019  
 **Originally authored:** 2017 – 2019 for enterprise reporting modernization  
-**Public release:** 2025 (sanitized, industry context only)
 
 ---
 
 ### Overview
 This repository documents the process used to migrate legacy Oracle BI Enterprise Edition (OBIEE) reports to Power BI.  
-It reflects the steps, structure, and decisions from a multi-year modernization of reporting assets.  
-The goal was to unify data models, reduce maintenance effort, and improve end-user accessibility.
+It captures the actual migration logic, schema mappings, and validation methods used between 2017 and 2019.  
+The goal was to unify data models, improve reliability, and reduce redundant semantic layers.
 
 ---
 
 ### Structure
-/obiee_exports/ # Sample XML exports and logical model fragments
-/powerbi_equivalents/ # .pbix files or screenshots of equivalent Power BI visuals
-/schema_maps/ # Field-level mappings between OBIEE subject areas and datasets
+/obiee_exports/ # Sample XML exports and RPD fragments
+/powerbi_equivalents/ # Power BI .pbix files or screenshots of visuals
+/schema_maps/ # Field-level mapping between OBIEE subject areas and Power BI datasets
 /validation/ # Report comparison scripts and QA documentation
-/docs/ # Notes on DAX translation, data lineage, and adoption tracking
+/docs/ # Notes on DAX translation, lineage, and testing procedures
 
 ---
 
 ### Migration Scope
 - ~240 legacy reports across finance, risk, and operations  
-- 10 subject areas consolidated to 6 datasets  
+- 10 subject areas consolidated into 6 datasets  
 - OBIEE RPD semantic layer refactored into Power BI dataflows  
-- Standardized date and lookup tables for consistency across teams  
+- Standardized date and lookup tables for cross-report consistency  
 
 ---
 
 ### Technical Notes
 1. **Model Translation:** Logical table joins and hierarchies re-implemented as Power Query relationships.  
-2. **DAX Replacements:** Legacy presentation layer expressions re-created with DAX calculated columns and measures.  
-3. **Security:** Row-level filters applied to match OBIEE presentation catalog permissions.  
-4. **Validation:** For each report, record counts and aggregates were verified within 1 percent variance.  
+2. **DAX Replacements:** OBIEE presentation-layer expressions recreated using DAX calculated columns and measures.  
+3. **Security:** Row-level filters replicate OBIEE catalog permissions.  
+4. **Validation:** Each report’s record counts and aggregates verified within 1% variance.
 
 ---
 
@@ -44,28 +43,28 @@ The goal was to unify data models, reduce maintenance effort, and improve end-us
 | OBIEE Field | Power BI Measure | Notes |
 |--------------|------------------|-------|
 | Ledger Amount | `SUM(Financials[Amount])` | Direct aggregate |
-| OBIEE KPI – Margin | `DIVIDE([Revenue]-[Cost],[Revenue])` | Translated DAX formula |
-| OBIEE Filter – Region = EMEA | `Region IN {"EMEA"}` | Replicated in report-level filter |
+| OBIEE KPI – Margin | `DIVIDE([Revenue]-[Cost],[Revenue])` | Equivalent DAX measure |
+| Filter – Region = EMEA | `Region IN {"EMEA"}` | Replicated in report-level filter |
 
 ---
 
 ### Lessons Learned
-- Maintain a data dictionary throughout migration; it becomes your single source of truth.  
-- Automate dataset refresh validation early; manual spot-checks don’t scale.  
-- Keep naming standards identical between systems to avoid re-training users.  
+- Keep a live data dictionary during migration; it becomes the reference point.  
+- Automate refresh validation early; manual spot checks don’t scale.  
+- Preserve naming standards across tools to minimize retraining.
 
 ---
 
 ### How to Use
-1. Review `/schema_maps` to see field-level translations.  
-2. Use `/validation` scripts to compare aggregations between legacy and new models.  
-3. Open `/powerbi_equivalents` for visual reference.  
+1. Review `/schema_maps` for field-level translations.  
+2. Use `/validation` scripts to compare legacy vs. Power BI aggregations.  
+3. Check `/powerbi_equivalents` for visual references.
 
 ---
 
 ### Author’s Note
-Migrations succeed when you treat them as model engineering, not report re-painting.  
-The examples here capture the mechanics and trade-offs that made the transition stable and repeatable.
+Migrations succeed when handled as data-model engineering, not visual replication.  
+The contents here show the real engineering work that made that migration consistent and reliable.
 
 ---
 
