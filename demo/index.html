@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBIEE to Power BI Migration Framework</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f8f9fa;--card:#fff;--border:#e2e8f0;--text:#1a202c;--muted:#64748b;--blue:#2563eb;--green:#16a34a;--amber:#d97706;--red:#dc2626;--teal:#0d9488;--purple:#7c3aed}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);padding:20px;max-width:1400px;margin:0 auto}
+h1{font-size:22px;font-weight:600;margin-bottom:4px}
+.subtitle{color:var(--muted);font-size:13px;margin-bottom:20px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.kpi-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.kpi-value{font-size:28px;font-weight:700}
+.kpi-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.kpi-value.blue{color:var(--blue)}
+.kpi-value.green{color:var(--green)}
+.kpi-value.amber{color:var(--amber)}
+.kpi-value.teal{color:var(--teal)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px}
+.card-title{font-size:14px;font-weight:600;margin-bottom:12px}
+.chart-wrap{position:relative;height:260px}
+.section-title{font-size:16px;font-weight:600;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:8px 10px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.badge-green{background:#dcfce7;color:#166534}
+.badge-amber{background:#fef3c7;color:#92400e}
+.badge-red{background:#fee2e2;color:#991b1b}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;margin:20px 0;flex-wrap:wrap}
+.flow-box{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:16px 24px;text-align:center;min-width:160px}
+.flow-box.source{border-color:var(--amber)}
+.flow-box.process{border-color:var(--blue)}
+.flow-box.target{border-color:var(--green)}
+.flow-box .label{font-size:11px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.flow-box .value{font-size:16px;font-weight:600}
+.flow-arrow{font-size:24px;color:var(--muted)}
+.progress-bar{background:#e2e8f0;border-radius:6px;height:24px;overflow:hidden;position:relative}
+.progress-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:11px;color:#fff;font-weight:600}
+@media(max-width:900px){.kpi-row,.grid-2,.grid-3{grid-template-columns:1fr}.flow{flex-direction:column}.flow-arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+
+<h1>OBIEE to Power BI Migration Framework</h1>
+<p class="subtitle">240 reports migrated across finance, risk, and operations. 10 OBIEE subject areas consolidated into 6 Power BI datasets. Row-level security replicated. Every report validated within 1% variance.</p>
+
+<div class="flow">
+<div class="flow-box source"><div class="label">Source</div><div class="value">OBIEE 12c</div><div style="font-size:11px;color:var(--muted);margin-top:4px">10 subject areas, 240 reports</div></div>
+<div class="flow-arrow">&#x2192;</div>
+<div class="flow-box process"><div class="label">Conversion</div><div class="value">Migration Framework</div><div style="font-size:11px;color:var(--muted);margin-top:4px">RPD mapping, RLS translation, validation</div></div>
+<div class="flow-arrow">&#x2192;</div>
+<div class="flow-box target"><div class="label">Target</div><div class="value">Power BI + Snowflake</div><div style="font-size:11px;color:var(--muted);margin-top:4px">6 datasets, governed views, RLS roles</div></div>
+</div>
+
+<div class="kpi-row">
+<div class="kpi"><div class="kpi-label">Reports Migrated</div><div class="kpi-value green">240 / 240</div><div class="kpi-sub">100% complete</div></div>
+<div class="kpi"><div class="kpi-label">Validation Pass Rate</div><div class="kpi-value blue">98.8%</div><div class="kpi-sub">237 of 240 passed first run</div></div>
+<div class="kpi"><div class="kpi-label">Subject Area Consolidation</div><div class="kpi-value teal">10 &#x2192; 6</div><div class="kpi-sub">40% reduction in datasets</div></div>
+<div class="kpi"><div class="kpi-label">Security Validation</div><div class="kpi-value green">100%</div><div class="kpi-sub">All RLS roles match OBIEE row counts</div></div>
+</div>
+
+<div class="section-title">Migration Progress by Domain</div>
+<div class="grid-3">
+<div class="card">
+<div class="card-title">Finance (4 subject areas &#x2192; 1 dataset)</div>
+<div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green)">120 / 120 reports</div></div>
+<table style="margin-top:12px">
+<tr><td>Finance - GL</td><td><span class="badge badge-green">45 migrated</span></td></tr>
+<tr><td>Finance - AP</td><td><span class="badge badge-green">28 migrated</span></td></tr>
+<tr><td>Finance - AR</td><td><span class="badge badge-green">22 migrated</span></td></tr>
+<tr><td>Finance - Budget</td><td><span class="badge badge-green">25 migrated</span></td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">Risk (2 subject areas &#x2192; 1 dataset)</div>
+<div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green)">48 / 48 reports</div></div>
+<table style="margin-top:12px">
+<tr><td>Risk - Credit</td><td><span class="badge badge-green">30 migrated</span></td></tr>
+<tr><td>Risk - Operational</td><td><span class="badge badge-green">18 migrated</span></td></tr>
+</table>
+</div>
+<div class="card">
+<div class="card-title">Operations (4 subject areas &#x2192; 1 dataset)</div>
+<div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green)">72 / 72 reports</div></div>
+<table style="margin-top:12px">
+<tr><td>Operations - Inventory</td><td><span class="badge badge-green">22 migrated</span></td></tr>
+<tr><td>Operations - Shipping</td><td><span class="badge badge-green">20 migrated</span></td></tr>
+<tr><td>Operations - Production</td><td><span class="badge badge-green">18 migrated</span></td></tr>
+<tr><td>Operations - Quality</td><td><span class="badge badge-green">12 migrated</span></td></tr>
+</table>
+</div>
+</div>
+
+<div class="section-title">Validation Results</div>
+<div class="grid-2">
+<div class="card"><div class="card-title">Validation pass rate by check type</div><div class="chart-wrap"><canvas id="chartValidation"></canvas></div></div>
+<div class="card">
+<div class="card-title">Failed checks and resolution</div>
+<table>
+<thead><tr><th>Report</th><th>Check</th><th>Variance</th><th>Root Cause</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>AP Vendor Summary</td><td>Record count</td><td>1.3%</td><td>OBIEE included reversed entries</td><td><span class="badge badge-green">Resolved</span></td></tr>
+<tr><td>GL Trial Balance</td><td>Record count</td><td>1.1%</td><td>47 template entries in OBIEE</td><td><span class="badge badge-green">Resolved</span></td></tr>
+<tr><td>Ops Quality Log</td><td>Record count</td><td>1.8%</td><td>Hardcoded date filter in OBIEE</td><td><span class="badge badge-green">Resolved</span></td></tr>
+<tr><td>Risk Event Summary</td><td>Dimension values</td><td>2 missing</td><td>New subcategories added mid-migration</td><td><span class="badge badge-green">Resolved</span></td></tr>
+<tr><td>Finance CC Rollup</td><td>Dimension values</td><td>1 extra</td><td>New cost center in source</td><td><span class="badge badge-green">Resolved</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="section-title">RLS Security Mapping</div>
+<div class="card">
+<table>
+<thead><tr><th>OBIEE Group</th><th>Power BI Role</th><th>Filter</th><th>Row Count Match</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Finance_NA</td><td>Finance_NA</td><td>dim_division[region] = "North America"</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+<tr><td>Finance_EMEA</td><td>Finance_EMEA</td><td>dim_division[region] = "EMEA"</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+<tr><td>Finance_APAC</td><td>Finance_APAC</td><td>dim_division[region] = "APAC"</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+<tr><td>Finance_Global</td><td>Finance_Global</td><td>No filter</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+<tr><td>Risk_ReadOnly</td><td>Risk_ReadOnly</td><td>[severity] IN ("High","Critical")</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+<tr><td>Operations_Plant</td><td>Operations_Plant</td><td>USERPRINCIPALNAME() lookup</td><td>Exact</td><td><span class="badge badge-green">Verified</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<p style="margin-top:24px;font-size:11px;color:var(--muted)">Migration framework for demonstration purposes. Source: github.com/nicholasjh-work/OBIEE-to-Power-BI-Conversion-Framework</p>
+
+<script>
+new Chart(document.getElementById('chartValidation').getContext('2d'), {
+    type:'bar',
+    data:{
+        labels:['Record Count','Aggregate Totals','Dimension Values','RLS Security'],
+        datasets:[
+            {label:'Passed',data:[237,240,238,240],backgroundColor:'#16a34a',borderRadius:4},
+            {label:'Failed',data:[3,0,2,0],backgroundColor:'#dc2626',borderRadius:4},
+        ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:11}}}},scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'Reports',font:{size:11}}}}}
+});
+</script>
+</body>
+</html>
