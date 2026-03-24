@@ -1,0 +1,21 @@
+subject_area,presentation_table,presentation_column,logical_column,data_type,target_dataset,target_column,migration_status
+Finance - GL,General Ledger,Journal Number,GL_JOURNAL_ID,VARCHAR,Finance,journal_id,migrated
+Finance - GL,General Ledger,Posting Date,GL_POSTING_DATE,DATE,Finance,posting_date,migrated
+Finance - GL,General Ledger,Account Code,GL_ACCOUNT_CODE,VARCHAR,Finance,account_code,migrated
+Finance - GL,General Ledger,Account Description,ACCOUNT_NAME,VARCHAR,Finance,account_name,migrated
+Finance - GL,General Ledger,Debit Amount,GL_DEBIT,DECIMAL,Finance,debit_amount,migrated
+Finance - GL,General Ledger,Credit Amount,GL_CREDIT,DECIMAL,Finance,credit_amount,migrated
+Finance - GL,General Ledger,Net Amount,GL_NET,DECIMAL,Finance,net_amount,migrated
+Finance - AP,Accounts Payable,AP Invoice Amount,AP_INVOICE_AMT,DECIMAL,Finance,net_amount,migrated
+Finance - AP,Accounts Payable,AP Vendor Name,VENDOR_NAME,VARCHAR,Finance,(dim_vendor join),migrated
+Finance - AR,Accounts Receivable,Outstanding Amount,AR_OUTSTANDING,DECIMAL,Finance,net_amount,migrated
+Finance - AR,Accounts Receivable,Aging Bucket,AR_AGING_DERIVED,VARCHAR,Finance,(DAX measure),migrated
+Finance - Budget,Budget,Budget Amount,BUDGET_AMT,DECIMAL,Finance,budget_amount,migrated
+Finance - Budget,Budget,Forecast Amount,FORECAST_AMT,DECIMAL,Finance,forecast_amount,migrated
+Risk - Credit,Credit Risk,Risk Event ID,RISK_EVENT_ID,VARCHAR,Risk,risk_event_id,migrated
+Risk - Credit,Credit Risk,Impact Amount,IMPACT_AMT,DECIMAL,Risk,impact_amount,migrated
+Risk - Operational,Operational Risk,Risk Category,RISK_CATEGORY,VARCHAR,Risk,risk_category,migrated
+Operations - Inventory,Inventory,Product Name,PRODUCT_NAME,VARCHAR,Operations,product_name,migrated
+Operations - Shipping,Shipping,Facility Name,FACILITY_NAME,VARCHAR,Operations,facility_name,migrated
+Operations - Production,Production,Quantity,PROD_QTY,INTEGER,Operations,quantity,migrated
+Operations - Quality,Quality,Quality Score,QUALITY_SCORE,DECIMAL,Operations,quality_score,migrated

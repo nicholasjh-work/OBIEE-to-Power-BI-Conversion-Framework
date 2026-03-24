@@ -1,0 +1,86 @@
+reports:
+  - name: GL Journal Detail
+    subject_area: Finance - GL
+    target_dataset: Finance
+    status: migrated
+    owner: FP&A
+    priority: high
+    validation_status: passed
+
+  - name: GL Trial Balance
+    subject_area: Finance - GL
+    target_dataset: Finance
+    status: migrated
+    owner: FP&A
+    priority: high
+    validation_status: passed
+
+  - name: AP Vendor Summary
+    subject_area: Finance - AP
+    target_dataset: Finance
+    status: migrated
+    owner: AP Team
+    priority: medium
+    validation_status: passed_with_notes
+    notes: "Count variance 1.3% due to reversed entries in OBIEE. PBI is correct."
+
+  - name: AR Aging Report
+    subject_area: Finance - AR
+    target_dataset: Finance
+    status: migrated
+    owner: AR Team
+    priority: high
+    validation_status: passed
+
+  - name: Budget vs Actual
+    subject_area: Finance - Budget
+    target_dataset: Finance
+    status: migrated
+    owner: FP&A
+    priority: high
+    validation_status: passed
+
+  - name: Credit Risk Dashboard
+    subject_area: Risk - Credit
+    target_dataset: Risk
+    status: migrated
+    owner: Risk Team
+    priority: high
+    validation_status: passed
+
+  - name: Operational Risk Log
+    subject_area: Risk - Operational
+    target_dataset: Risk
+    status: migrated
+    owner: Risk Team
+    priority: medium
+    validation_status: passed
+
+  - name: Inventory Position
+    subject_area: Operations - Inventory
+    target_dataset: Operations
+    status: migrated
+    owner: Supply Chain
+    priority: high
+    validation_status: passed
+
+  - name: Shipping Performance
+    subject_area: Operations - Shipping
+    target_dataset: Operations
+    status: migrated
+    owner: Logistics
+    priority: medium
+    validation_status: passed
+
+  - name: Production Quality Log
+    subject_area: Operations - Quality
+    target_dataset: Operations
+    status: migrated
+    owner: Quality
+    priority: medium
+    validation_status: passed_with_notes
+    notes: "Count variance 1.8% due to hardcoded date filter in OBIEE."
+
+# Remaining 230 reports follow the same pattern.
+# This sample shows the structure for 10 representative reports.
+# Full inventory maintained in the project management tracker.

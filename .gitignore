@@ -1,0 +1,12 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.DS_Store
+*.pbix
+*.pbit
+.pytest_cache/
+.coverage

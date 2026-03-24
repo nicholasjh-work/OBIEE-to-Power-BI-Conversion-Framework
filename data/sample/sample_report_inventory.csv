@@ -1,0 +1,11 @@
+report_name,subject_area,target_dataset,status,owner,priority,validation_status
+GL Journal Detail,Finance - GL,Finance,migrated,FP&A,high,passed
+GL Trial Balance,Finance - GL,Finance,migrated,FP&A,high,passed
+GL Summary by Division,Finance - GL,Finance,migrated,FP&A,high,passed
+AP Vendor Summary,Finance - AP,Finance,migrated,AP Team,medium,passed_with_notes
+AP Aging Detail,Finance - AP,Finance,migrated,AP Team,medium,passed
+AR Aging Report,Finance - AR,Finance,migrated,AR Team,high,passed
+AR Customer Balance,Finance - AR,Finance,migrated,AR Team,medium,passed
+Budget vs Actual,Finance - Budget,Finance,migrated,FP&A,high,passed
+Budget Variance by CC,Finance - Budget,Finance,migrated,FP&A,high,passed
+Credit Risk Dashboard,Risk - Credit,Risk,migrated,Risk Team,high,passed

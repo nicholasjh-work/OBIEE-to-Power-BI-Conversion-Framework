@@ -1,0 +1,4 @@
+variance_tolerance_pct: 1.0
+dimension_match: exact
+security_match: exact
+max_stale_hours: 24
